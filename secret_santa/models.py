@@ -14,7 +14,7 @@ class Event(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200, null=True, blank=True)
     currency = models.IntegerField(choices=CURRENCY, default=0)
-    budget = models.DecimalField(max_digits=10, decimal_places=2)
+    budget = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     event_image = CloudinaryField('image', default='placeholder')
     event_date = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -40,4 +40,4 @@ class Participant(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} ({self.event.name})"
+        return f"{self.name} ({self.event.title})"
