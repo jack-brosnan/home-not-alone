@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+
+    <h1>If this heading is red, static files are being served.</h1>
+{% endif %}
+
+{% endblock %}

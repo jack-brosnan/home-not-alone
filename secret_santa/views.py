@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User, Group
 from .models import Participant, Event
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 import random, string
 
 
@@ -9,7 +13,7 @@ class HomePage(TemplateView):
     """
     Displays home page"
     """
-    template_name = 'index.html'
+    template_name = "secret_santa/index.html"
     
 def create_participant_for_event(event, participant_name):
     
