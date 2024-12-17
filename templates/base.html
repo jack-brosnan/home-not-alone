@@ -121,6 +121,37 @@
     <!-- Font Awesome script-->
 
     <script src="https://kit.fontawesome.com/1ef2e57231.js" crossorigin="anonymous"></script>
+
+    <script>
+        //Script for displaying confirmation modal for deleting Expense Spaces 
+
+        const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+        const deleteButtons = document.getElementsByClassName("delete-space");
+        const deleteForm = document.getElementById("deleteForm");
+
+        for (let button of deleteButtons) {
+            button.addEventListener("click", (e) => {
+                let spaceId = button.getAttribute("data-space-id");
+                console.log("Space ID:", spaceId);
+                deleteForm.action = `/delete_event/${spaceId}/`;
+                console.log("Form Action:", deleteForm.action);
+                deleteModal.show();
+            });
+        }
+
+        // Set Django message display duration
+
+        const messages = document.querySelectorAll('#message-container .alert');
+        messages.forEach((message) => {
+            setTimeout(() => {
+                message.classList.remove('show');
+                message.style = `transition: opacity 1s ease;
+                                      opacity: 0;
+                                      `
+                setTimeout(() => message.remove(), 500);
+            }, 3000);
+        });
+    </script>
     
 </body>
 

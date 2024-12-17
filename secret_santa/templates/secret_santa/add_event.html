@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Event{% endblock %}
+
+{% block content %}
+<section class="container container-v-center">
+
+    <h2 class="header-white">Add Event</h2>
+
+    <!-- Form to create a new event -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Display the form fields with crispy layout -->
+        {{ event_form | crispy }}
+
+        <!-- Submit button for adding a new event -->
+        <button type="submit" class="btn--orange px-4">Add Event</button>
+
+        <!-- Cancel button to navigate back to the home page -->
+        <a href="{% url 'home' %}" class="btn btn--gray">Cancel</a>
+    </form>
+</section>
+{% endblock %}
