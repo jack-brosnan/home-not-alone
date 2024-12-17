@@ -29,3 +29,22 @@ class EventForm(forms.ModelForm):
                 attrs={'placeholder': 'Enter Description'}
             ),
         }
+
+class ParticipantForm(forms.ModelForm):
+    """
+    Form for adding or editing a contributor.
+    """
+    class Meta:
+        """
+        **Model**: :model:`Contributor`
+
+        **Fields**:
+
+        1. ``name``: TextInput for entering the item name.
+
+        """
+        model = Participant
+        fields = ['name', ]
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Enter Name'}),
+        }

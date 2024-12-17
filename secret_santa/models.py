@@ -25,12 +25,10 @@ class Event(models.Model):
 
 
 class Participant(models.Model):
-    
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='participant_profile')      
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='participant_profile', null=True, blank=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='participants')
     name = models.CharField(max_length=100)
     wishlist = models.TextField(blank=True, null=True)
-    
     assigned_recipient = models.ForeignKey(
         'self', 
         on_delete=models.SET_NULL, 
