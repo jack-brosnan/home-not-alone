@@ -10,9 +10,9 @@
     <h2 class="header-white visually-hidden">Event</h2>
 
     <!-- Event overview section -->
-    <div class="container my-3 px-2 z-2">
+    <div class="container-fluid my-3 px-2 z-2">
         <div class="row justify-content-between">
-            <div class="col-md-6 align-self-center brand-light box-shadow rounded">
+            <div class="col-md-6 align-self-center container--white brand-light box-shadow rounded">
                 <div class="row">
                     <!-- Event profile image -->
                     <div class="col-12 col-md-5 align-self-center">
@@ -25,7 +25,7 @@
                         {% endif %}
                     </div>
                     <!-- Expense space title and date created -->
-                    <div class="col-12 col-md-7 text-center align-self-center">
+                    <div class="col-12 col-md-7 text-center align-self-center text--black">
                         <h2>{{ event.title }}</h2>
                         <p>{{ event.description }}</p>
                         <p>Budget: {{ event.budget }} <span>{{ event.get_currency_display }}</span></p>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 align-self-center p-2 mt-2">
+            <div class="col-12 col-md-5 align-self-center p-2 mt-2">
                 <!-- Section displaying contributors assigned to the space including total amount contributing -->
                 <div class="row justify-content-center contributor-container brand-dark rounded">
                     <div class="col-12 mt-2 text-center">
@@ -68,7 +68,7 @@
                     {% empty %}
                     <!-- Displays message for when no contributors are added to space -->
                     <div id="container-empty-container" class="p-2 m-3 container--white box-shadow rounded">
-                        <p class="m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit above to add
+                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit above to add
                             contributors to the space.</p>
                     </div>
 
