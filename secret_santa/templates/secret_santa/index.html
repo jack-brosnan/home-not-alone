@@ -4,8 +4,120 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-
+<section class="container mt-4">
+    
     <h1>If this heading is red, static files are being served.</h1>
-{% endif %}
+{% else %}
+    <div class="body-content" id="about">
+        <h2>Who's your Secret Santa?!</h2>
+        <p>At <strong>Secret Santa</strong>, we make setting up your Secret Santas as easy as can be.</p>
+        <p>Organize your Secret Santa and spread happiness this season!</p>
+        <a href="{% url 'account_signup' %}" class="btn btn-custom">Join Secret Santa</a>
+    </div>
 
+    <div class="row mb-3">
+
+        <h1 class="d-md-none header-white text-center">Your Events</h1>
+
+        <div class="col d-flex justify-content-end py-2">
+            <div class="col-6 d-none d-md-inline text-end">
+                <h1 class="header-white text-center header-container">Your Events</h1>
+            </div>
+            <!-- Add Space form link -->
+            <div class="col-3 d-none d-md-inline align-content-center text-end add-space-button">
+                <a href="{% url 'add_event' %}" class="p-2 container--white add-space-text box-shadow rounded-pill"><i
+                        class="fa-solid fa-circle-plus add-icon"></i>
+                    <span class="link-color">Add Event</span></a>
+            </div>
+        </div>
+        <!-- Expense Space card list -->
+        <div class="row justify-content-around">
+            {% for event in events %}
+            <div class="col-9 col-xs-7 col-md-4 col-lg-3 mb-3">
+                <div class="card box-shadow">
+                    <div class="image-container">
+                        <div class="d-flex justify-content-center">
+                            {% if "placeholder" in event.event_image.url %}
+                            <img src="{% static 'images/placeholder.webp' %}" class="space-img card-img-top"
+                                alt="placeholder image">
+                            {% else %}
+                            <img src="{{ event.event_image.url }}" class="space-img card-img-top"
+                                alt="{{ event.title }}">
+                            {% endif %}
+                            <div class="contributor-count text-center"
+                                title="{{ event.participant.count }} participant added">
+                                <p class="contributor-count-text"><i class="fa-solid fa-user"></i>
+                                    {{ event.participant.count }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        {% if event.description is null %}
+                        <br>
+                        {% else %}
+                        <p class="card-text">{{ event.description }}</p>
+                        {% endif %}
+                        <p class="card-text"><small class="text-muted">Created on:
+                                {{ event.created_at|date:"M d, Y" }}</small></p>
+                    </div>
+                    <div class="card-footer">
+
+                        <!-- Expense space buttons - View | Edit | Delete -->
+                        <div class="d-flex justify-content-around">
+
+                            <a href="{% url 'view_event' event.id %}"
+                                class="btn btn--orange d-none d-sm-inline d-md-none d-xl-inline">View Event</a>
+                            <a href="{% url 'view_event' event.id %}"
+                                class="btn btn--orange d-sm-none d-md-inline d-xl-none">View</a>
+
+                            <a href="{% url 'edit_event' edit_id=event.id %}" class="btn btn--blue mx-1">
+                                <i class="fa-regular fa-pen-to-square"></i></a>
+                            <button class="btn--red delete-space mr-3" data-space-id="{{ event.id }}"><i
+                                    class="fa-solid fa-x"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Add Space button link for small screen devices -->
+        <div class="col-12 d-md-none my-4 text-center">
+            <a href="{% url 'add_event' %}" class="p-4 container--white add-space-text box-shadow rounded-pill"><i
+                    class="fa-solid fa-circle-plus add-icon"></i>
+                <span class="link-color add-space-text"> Add Event</span></a>
+        </div>
+    </div>
+
+</section>
+
+<!-- Displays landing page for users not logged in -->
+{% endif %}
+<p>Placeholder</p>
 {% endblock %}
+
+
+<!-- Modal popup to confirm deltion of Expense Space -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete event?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your event? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form id="deleteForm" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn--red">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
