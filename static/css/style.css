@@ -2,13 +2,15 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #2e7d32; /* Christmas green */
+    background-color: #2e7d32;
+    /* Christmas green */
     color: white;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #b71c1c; /* Christmas red */
+    background-color: #b71c1c;
+    /* Christmas red */
 }
 
 .navbar-brand {
@@ -45,17 +47,19 @@ body {
 }
 
 .body-content {
-    flex: 1; /* Takes remaining space */
-    background-color: #2e7d32; /* Green */
+    flex: 1;
+    /* Takes remaining space */
+    background-color: #2e7d32;
     text-align: center;
     padding: 40px 20px;
-    overflow-y: auto; /* In case of extra content */          
+    overflow-y: auto;
+    /* In case of extra content */
     font-family: christmas-classica;
 }
 
 .btn-custom {
-    background-color: #ffcc80; /* Golden Yellow */
-    color: #b71c1c; /* Red text */
+    background-color: #ffcc80;
+    color: #b71c1c;
     border: none;
     padding: 10px 20px;
     margin-top: 15px;
@@ -70,7 +74,7 @@ body {
 
 /* Footer */
 .footer {
-    background-color: #b71c1c; 
+    background-color: #b71c1c;
     color: white;
 }
 
