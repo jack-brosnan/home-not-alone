@@ -46,29 +46,24 @@
                 <div class="row justify-content-center contributor-container brand-dark rounded">
                     <div class="col-12 mt-2 text-center">
                         <h3 class="header-white">Participants<span>
-                            <a href="#"
-                            class="btn btn--orange">Edit</a></span>
+                                <a href="{% url 'edit_participant' event.id %}" class="btn btn--orange">Edit</a></span>
                         </h3>
                     </div>
 
                     <!-- Loops through contributors and creates filter applying custom checkbox style  -->
-                    {% for p in participants %}
-                    <div class="contributor-filter col-6 pb-2">
-                        <div class="filter-wrapper">
-                            <input type="checkbox" id="filter-checkbox-{{ p.id }}">
-                            <label class="filter-bg" for="filter-checkbox-{{ p.id }}">
-                                <span class="filter-btn"></span>
-                            </label>
-                            <div class="filter-content">
-                                <p class="m-0 text-start">{{ p.name }}</p>
-                                <!-- <p class="m-0">{{ event.get_currency_display }} {{ p.total_contributions }}</p> -->
-                            </div>
-                        </div>
+                    {% for p in participant %}
+                    <div class="container--white text--black">
+                        <ul>
+                            <li>{{ p.name }}</li>
+                        </ul>
                     </div>
+
                     {% empty %}
                     <!-- Displays message for when no contributors are added to space -->
                     <div id="container-empty-container" class="p-2 m-3 container--white box-shadow rounded">
-                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit above to add
+                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit
+                            above
+                            to add
                             contributors to the space.</p>
                     </div>
 
@@ -94,20 +89,6 @@
             }, 3000);
         });
 
-        // Button to toggle expense line accordion dropdown
-        const toggleButton = document.getElementById('toggleButton');
-        const panels = document.querySelectorAll('.accordion-panel');
-
-        let status = false;
-
-        toggleButton?.addEventListener('click', function () {
-            panels.forEach(panel => {
-                panel.classList.toggle('show', !status);
-            });
-            status = !status;
-            toggleButton.textContent = status ? 'Collapse All' : 'Show All';
-        });
-
         // Contributor filter script
         const contributorCheckboxes = document.querySelectorAll('.contributor-filter input[type="checkbox"]');
         const expenseLines = document.querySelectorAll('.accordion-item');
@@ -122,7 +103,8 @@
                 .map(checkbox => checkbox.id.replace('filter-checkbox-', ''));
 
             expenseLines.forEach(expenseLine => {
-                const contributorsInLine = (expenseLine.dataset.contributors || '').split(',').map(id => id.trim());
+                const contributorsInLine = (expenseLine.dataset.contributors || '').split(',').map(id =>
+                    id.trim());
                 const matchesFilter = selectedContributorIds.length === 0 ||
                     contributorsInLine.some(id => selectedContributorIds.includes(id));
                 expenseLine.style.display = matchesFilter ? '' : 'none';
@@ -135,7 +117,8 @@
 
             contributionRows.forEach(row => {
                 const contributorId = row.dataset.contributorId;
-                const rowMatches = selectedContributorIds.length === 0 || selectedContributorIds.includes(contributorId);
+                const rowMatches = selectedContributorIds.length === 0 || selectedContributorIds
+                    .includes(contributorId);
                 row.style.display = rowMatches ? '' : 'none';
             });
         }
@@ -164,8 +147,10 @@
 
             if (allContributorsHaveCustomAmounts && customAmountTotal < totalAmount) {
                 const warningIcon = expenseLine.querySelector(`#expense-warning-${expenseLineId}`);
-                const amountElement = expenseLine.querySelector(`#expense-amount-${expenseLineId} .amount`);
-                const warningMessage = expenseLine.querySelector(`#expense-warning-message-${expenseLineId}`);
+                const amountElement = expenseLine.querySelector(
+                    `#expense-amount-${expenseLineId} .amount`);
+                const warningMessage = expenseLine.querySelector(
+                    `#expense-warning-message-${expenseLineId}`);
 
                 if (warningIcon) {
                     warningIcon.hidden = false;

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User, Group
 from .models import Participant, Event
-from .forms import EventForm
+from .forms import EventForm, ParticipantForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,29 +34,29 @@ class EventList(TemplateView):
             context["events"] = None
         return context
     
-def create_participant_for_event(event, participant_name):
+# def create_participant_for_event(event, participant_name):
     
-    username = generate_unique_username(participant_name)
-    password = User.objects.make_random_password()
-    user = User.objects.create_user(username=username, password=password)
-    
-    
-    participant_group, _ = Group.objects.get_or_create(name='Participant')
-    user.groups.add(participant_group)
+#     username = generate_unique_username(participant_name)
+#     password = User.objects.make_random_password()
+#     user = User.objects.create_user(username=username, password=password)
     
     
-    participant = Participant.objects.create(
-        user=user,
-        event=event,
-        name=participant_name,
-    )
+#     participant_group, _ = Group.objects.get_or_create(name='Participant')
+#     user.groups.add(participant_group)
+    
+    
+#     participant = Participant.objects.create(
+#         user=user,
+#         event=event,
+#         name=participant_name,
+#     )
 
-    return participant
+#     return participant
 
-def generate_unique_username(name):
-    suffix = ''.join(random.choices(string.digits, k=4))
-    base_username = name.lower().replace(' ', '_')
-    return f"{base_username}_{suffix}"
+# def generate_unique_username(name):
+#     suffix = ''.join(random.choices(string.digits, k=4))
+#     base_username = name.lower().replace(' ', '_')
+#     return f"{base_username}_{suffix}"
 
 
 @login_required
@@ -152,5 +152,79 @@ def view_event(request, event_id):
         {
             "event": event,
             "participant": participant,
+        }
+    )
+
+@login_required
+def edit_participant(request, event_id):
+    """
+    Add, edit, or delete participants for an event.
+    """
+    event = get_object_or_404(
+        Event,
+        pk=event_id,
+        organiser=request.user
+    )
+
+    participants = Participant.objects.filter(event=event)
+    form = ParticipantForm()
+
+    if request.method == 'POST':
+        if 'edit' in request.POST:
+            pk = request.POST.get('edit')
+            participant = get_object_or_404(
+                Participant,
+                id=pk,
+                event=event
+            )
+            form = ParticipantForm(instance=participant)
+
+        elif 'save' in request.POST:
+            pk = request.POST.get('save')
+            if pk:
+                # Editing existing participant
+                participant = get_object_or_404(
+                    Participant,
+                    id=pk,
+                    event=event
+                )
+                form = ParticipantForm(request.POST, instance=participant)
+                if form.is_valid():
+                    form.save()
+                    messages.success(request, 'Participant edited!')
+            else:
+                # Creating a new participant
+                form = ParticipantForm(request.POST)
+                if form.is_valid():
+                    new_participant = form.save(commit=False)
+                    new_participant.event = event
+                    # Additional logic for creating User if needed
+                    new_participant.save()
+                    messages.success(request, 'Participant added!')
+
+            # Reset form after save
+            form = ParticipantForm()
+
+        elif 'delete' in request.POST:
+            pk = request.POST.get('delete')
+            if pk:
+                participant = get_object_or_404(
+                    Participant,
+                    id=pk,
+                    event=event
+                )
+                participant.delete()
+                messages.success(request, 'Participant deleted!')
+
+        elif 'cancel' in request.POST:
+            return redirect('edit_participant', event_id=event_id)
+
+    return render(
+        request,
+        'secret_santa/edit_participant.html',
+        {
+            'event': event,
+            'participants': participants,
+            'form': form,
         }
     )
