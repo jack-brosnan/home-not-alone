@@ -3,9 +3,13 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-
-
     <h1>If this heading is red, static files are being served.</h1>
+{% else %}
+    <div class="body-content" id="about">
+        <h2>Who's your Secret Santa?!</h2>
+        <p>At <strong>Secret Santa</strong>, we make setting up your Secret Santas as easy as can be.</p>
+        <p>Organize your Secret Santa and spread happiness this season!</p>
+        <a href="{% url 'account_signup' %}" class="btn btn-custom">Join Secret Santa</a>
+    </div>
 {% endif %}
-
 {% endblock %}
