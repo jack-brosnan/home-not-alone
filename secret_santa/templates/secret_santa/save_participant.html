@@ -1,0 +1,16 @@
+<tr>
+    <td colspan="2">
+      <form method="post" action="{% url 'edit_participant' event.id %}">
+        {% csrf_token %}
+        {{ form.name }}
+        <button type="submit" name="save" value="{{ form.instance.id }}" class="btn btn-link save-icon"
+          title="Save Changes">
+          <i class="fa-solid fa-check"></i>
+        </button>
+        <button type="submit" name="cancel" value="{{ form.instance.id }}" class="btn btn-link cancel-icon"
+          title="Cancel Changes">
+          <i class="fa-solid fa-ban"></i>
+        </button>      
+      </form>
+    </td>
+</tr>
