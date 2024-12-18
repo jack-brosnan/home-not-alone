@@ -1,11 +1,11 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Confirm Access" %}{% endblock head_title %}
 
 {% block content %}
-
+<div class="center-content">
 <h1>{% trans "Confirm Access" %}</h1>
 
 <p>{% blocktranslate %}To safeguard the security of your account, please enter your password:{% endblocktranslate %}</p>
@@ -18,5 +18,5 @@
   {% endif %}
   <button type="submit">{% trans "Confirm" %}</button>
 </form>
-
+</div>
 {% endblock content %}
