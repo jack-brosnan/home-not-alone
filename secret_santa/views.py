@@ -11,7 +11,7 @@ import random, string
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-
+from django.db import transaction
 
 
 
@@ -228,3 +228,35 @@ def edit_participant(request, event_id):
             'form': form,
         }
     )
+
+@login_required
+def random_santa(request, event_id):
+    """
+    Display the details of a specific Event along with
+    its linked EventLines.
+    """
+    event = get_object_or_404(
+        Event,
+        pk=event_id,
+        organiser=request.user
+        )
+
+    participants = list(Participant.objects.filter(event=event))
+
+    if len(participants) < 2:
+        messages.error(request, "Not enough participants to assign recipients.")
+        return redirect('view_event', event_id=event.id)
+
+    random.shuffle(participants)
+    print(participants)
+
+    # Save and save pairs
+
+    for i in range(len(participants)):
+        santa = participants[i]
+        recipient = participants[(i + 1) % len(participants)]  # Next participant if the last is first
+        santa.assigned_recipient = recipient
+        santa.save()
+
+    messages.success(request, "Recipients assigned successfully!")
+    return redirect('view_event', event_id=event.id)

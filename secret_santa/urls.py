@@ -8,4 +8,5 @@ urlpatterns = [
     path("edit_event/<int:edit_id>/", views.edit_event, name="edit_event"),
     path("view_event/<int:event_id>/", views.view_event, name="view_event"),
     path("edit_participant/<int:event_id>/", views.edit_participant, name="edit_participant"),
+    path("random_santa/<int:event_id>/", views.random_santa, name="random_santa"),
 ]
