@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.gitpod.io','.codeinstitute-ide.net','.herokuapp.com',]
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django.contrib.sites',
     'allauth',
+    'invitations',
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
@@ -55,11 +56,21 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
+INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True 
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+INVITATIONS_INVITE_EXPIRY = 7  
+INVITATIONS_EMAIL_SUBJECT_PREFIX = "Your Invitation"
+INVITATIONS_SIGNUP_REDIRECT = 'home' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
