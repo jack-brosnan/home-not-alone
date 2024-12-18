@@ -2,8 +2,8 @@
 
 # Welcome to Home Not Alone!
 
-## Home Not Alone
-### Home Not Alone is a Secret Santa planning app, dedicated to making Secret Santa super simple, while keeping everyone's secrets a surprise.
+## The Secret Santa Planning App
+### Home Not Alone is dedicated to making planning your next Secret Santa super simple, while keeping everyone's secret gifts a Santa-sized surprise!
 
 The responsive website allows registered users to create participant lists for gift giving activities, allowing easy inviting and assignment distribution, along with setting a recommended budget for all gifts involved. Users who are not registered are recommended to check out the website's About page, and are free to sign up for their own account. 
 
