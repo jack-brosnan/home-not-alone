@@ -57,6 +57,11 @@ body {
     font-family: christmas-classica;
 }
 
+#delete-image {
+    width: 100% !important;
+    vertical-align: middle;
+}
+
 .btn-custom {
     background-color: #ffcc80;
     color: #b71c1c;
@@ -377,3 +382,4 @@ body {
     border: none;
     color: red;
 }
+
