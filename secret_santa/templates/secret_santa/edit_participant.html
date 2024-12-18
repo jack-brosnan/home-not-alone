@@ -13,55 +13,57 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Email</th>
                     <th class="text-end">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for p in participants %}
-                    {% if form.instance.id == p.id %}
-                        <!-- Include form from save_participant.html to save participant -->
-                        {% include 'secret_santa/save_participant.html' %}
-                    {% else %}
-                        <tr>
-                            <td>{{ p.name }}</td>
-                            <td class="text-end">
-                                <form method="post" action="{% url 'edit_participant' event.id %}" style="display:inline;">
-                                    {% csrf_token %}
-                                    <button type="submit" name="edit" value="{{ p.id }}" class="btn btn-link edit-icon"
-                                        title="Edit Participant">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                </form>
+                {% if form.instance.id == p.id %}
+                <!-- Include form from save_participant.html to save participant -->
+                {% include 'secret_santa/save_participant.html' %}
+                {% else %}
+                <tr>
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.email }}</td>
+                    <td class="text-end">
+                        <form method="post" action="{% url 'edit_participant' event.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" name="edit" value="{{ p.id }}" class="btn btn-link edit-icon"
+                                title="Edit Participant">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                        </form>
 
-                                <form method="post" action="{% url 'edit_participant' event.id %}" style="display:inline;">
-                                    {% csrf_token %}
-                                    <button type="submit" name="delete" value="{{ p.id }}" class="btn btn-link p-0 delete-icon"
-                                        title="Remove Participant">
-                                        <i class="fa-solid fa-x"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endif %}
+                        <form method="post" action="{% url 'edit_participant' event.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" name="delete" value="{{ p.id }}" class="btn btn-link p-0 delete-icon"
+                                title="Remove Participant">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endif %}
                 {% empty %}
-                    <tr>
-                        <td colspan="2">No participants added</td>
-                    </tr>
+                <tr>
+                    <td colspan="3">No participants added</td>
+                </tr>
                 {% endfor %}
 
                 {% if not form.instance.id %}
-                    <!-- Form to add a new participant -->
-                    <tr>
-                        <td colspan="2">
-                            <form method="post" action="{% url 'edit_participant' event.id %}">
-                                {% csrf_token %}
-                                {{ form.name }}
-                                <button type="submit" name="save" class="btn btn-link add-icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td colspan="3">
+                        <form method="post" action="{% url 'edit_participant' event.id %}">
+                            {% csrf_token %}
+                            {{ form.name }}
+                            {{ form.email }}
+                            <button type="submit" name="save" class="btn btn-link add-icon">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
                 {% endif %}
             </tbody>
         </table>

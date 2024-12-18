@@ -3,17 +3,21 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User, Group
 from .models import Participant, Event
 from .forms import EventForm, ParticipantForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 import random, string
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from invitations.utils import get_invitation_model
 
 
+def is_organiser(user):
+    return user.groups.filter(name="Organiser").exists()
 
+Invitation = get_invitation_model()
 
 
 class EventList(TemplateView):
@@ -33,32 +37,8 @@ class EventList(TemplateView):
             # Unauthenticated users see the welcome page
             context["events"] = None
         return context
-    
-# def create_participant_for_event(event, participant_name):
-    
-#     username = generate_unique_username(participant_name)
-#     password = User.objects.make_random_password()
-#     user = User.objects.create_user(username=username, password=password)
-    
-    
-#     participant_group, _ = Group.objects.get_or_create(name='Participant')
-#     user.groups.add(participant_group)
-    
-    
-#     participant = Participant.objects.create(
-#         user=user,
-#         event=event,
-#         name=participant_name,
-#     )
 
-#     return participant
-
-# def generate_unique_username(name):
-#     suffix = ''.join(random.choices(string.digits, k=4))
-#     base_username = name.lower().replace(' ', '_')
-#     return f"{base_username}_{suffix}"
-
-
+@user_passes_test(is_organiser)
 @login_required
 def add_event(request):
     """
@@ -135,23 +115,17 @@ def delete_event(request, event_id):
 @login_required
 def view_event(request, event_id):
     """
-    Display the details of a specific Event along with
-    its linked EventLines.
+    Display the details of a specific Event along with its participants.
     """
-    event = get_object_or_404(
-        Event,
-        pk=event_id,
-        organiser=request.user
-        )
-
-    participant = Participant.objects.filter(event=event)
+    event = get_object_or_404(Event, pk=event_id, organiser=request.user)
+    participants = Participant.objects.filter(event=event)
 
     return render(
         request,
         'secret_santa/view_event.html',
         {
             "event": event,
-            "participant": participant,
+            "participant": participants,
         }
     )
 
@@ -228,3 +202,4 @@ def edit_participant(request, event_id):
             'form': form,
         }
     )
+

@@ -24,25 +24,17 @@
                             alt="{{ event.title }} event image">
                         {% endif %}
                     </div>
-                    <!-- Expense space title and date created -->
+                    <!-- Event title, description, and budget -->
                     <div class="col-12 col-md-7 text-center align-self-center text--black">
                         <h2>{{ event.title }}</h2>
                         <p>{{ event.description }}</p>
                         <p>Budget: {{ event.budget }} <span>{{ event.get_currency_display }}</span></p>
                         <p><small>Created on: {{ event.created_at|date:"M d, Y" }}</small></p>
-
-                        <!-- Sum of total expense line amounts | adjusted for different screen sizes -->
-                        <!-- <p class="d-lg-none"><strong>Total:</strong> {{ event.get_currency_display }}
-                            {{ event.total_expense }}</p>
-                        <p class="d-none d-lg-inline"><strong>Total Expense:</strong>
-                            {{ event.get_currency_display }}
-                            {{ event.total_expense }}</p> -->
-
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-5 align-self-center p-2 mt-2">
-                <!-- Section displaying contributors assigned to the space including total amount contributing -->
+                <!-- Participants Section -->
                 <div class="row justify-content-center contributor-container brand-dark rounded">
                     <div class="col-12 mt-2 text-center">
                         <h3 class="header-white">Participants<span>
@@ -50,27 +42,31 @@
                         </h3>
                     </div>
 
-                    <!-- Loops through contributors and creates filter applying custom checkbox style  -->
                     {% for p in participant %}
-                    <div class="container--white text--black">
-                        <ul>
-                            <li>{{ p.name }}</li>
-                        </ul>
+                    <div
+                        class="container--white text--black d-flex align-items-center justify-content-between p-2 mb-2">
+                        <div>{{ p.name }}</div>
+                        <div>
+                            {% if p.user %}
+                            <!-- Participant already has a user account -->
+                            <span class="badge bg-success">User Assigned</span>
+                            <!-- Optional password reset link (requires password reset setup) -->
+                            <a href="#" class="btn btn-sm btn-outline-secondary ms-2">Reset Password</a>
+                            {% else %}
+                            <button class="btn btn-primary btn-sm generate-link-btn"
+                                data-participant-id="{{ p.id }}">Generate Link
+                            </button>
+                            {% endif %}
+                        </div>
                     </div>
-
                     {% empty %}
-                    <!-- Displays message for when no contributors are added to space -->
+                    <!-- Displays message when no participants are added -->
                     <div id="container-empty-container" class="p-2 m-3 container--white box-shadow rounded">
-                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit
-                            above
-                            to add
-                            contributors to the space.</p>
+                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit above
+                            to add participants.</p>
                     </div>
-
                     {% endfor %}
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -78,97 +74,37 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Django record update messages - Display duration
-        const messages = document.querySelectorAll('#message-container .alert');
-        messages.forEach((message) => {
-            setTimeout(() => {
-                message.classList.remove('show');
-                message.style.transition = "opacity 1s ease";
-                message.style.opacity = 0;
-                setTimeout(() => message.remove(), 500);
-            }, 3000);
-        });
+        const buttons = document.querySelectorAll(".generate-link-btn");
 
-        // Contributor filter script
-        const contributorCheckboxes = document.querySelectorAll('.contributor-filter input[type="checkbox"]');
-        const expenseLines = document.querySelectorAll('.accordion-item');
+        buttons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const participantId = this.getAttribute("data-participant-id");
+                const url = `/generate_invitation_link/${participantId}/`;
 
-        contributorCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', filterExpenses);
-        });
-
-        function filterExpenses() {
-            const selectedContributorIds = Array.from(contributorCheckboxes)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.id.replace('filter-checkbox-', ''));
-
-            expenseLines.forEach(expenseLine => {
-                const contributorsInLine = (expenseLine.dataset.contributors || '').split(',').map(id =>
-                    id.trim());
-                const matchesFilter = selectedContributorIds.length === 0 ||
-                    contributorsInLine.some(id => selectedContributorIds.includes(id));
-                expenseLine.style.display = matchesFilter ? '' : 'none';
-                if (matchesFilter) filterContributionRows(expenseLine, selectedContributorIds);
+                fetch(url, {
+                        method: "GET",
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest",
+                        },
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            const linkElement = document.getElementById(
+                                `link-${participantId}`);
+                            linkElement.innerHTML =
+                                `<a href="${data.link}" target="_blank">${data.link}</a>`;
+                        } else {
+                            alert(`Error: ${data.error}`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error generating link:", error);
+                        alert("Failed to generate the link. Please try again.");
+                    });
             });
-        }
-
-        function filterContributionRows(expenseLine, selectedContributorIds) {
-            const contributionRows = expenseLine.querySelectorAll('tbody tr[data-contributor-id]');
-
-            contributionRows.forEach(row => {
-                const contributorId = row.dataset.contributorId;
-                const rowMatches = selectedContributorIds.length === 0 || selectedContributorIds
-                    .includes(contributorId);
-                row.style.display = rowMatches ? '' : 'none';
-            });
-        }
-
-        // Expense line validation for custom amounts
-        expenseLines.forEach(expenseLine => {
-            const totalAmount = parseFloat(expenseLine.dataset.totalAmount || 0);
-            const expenseLineId = expenseLine.dataset.id;
-            const contributionRows = expenseLine.querySelectorAll('tbody tr[data-contributor-id]');
-
-            if (contributionRows.length === 0) {
-                return;
-            }
-
-            let customAmountTotal = 0;
-            let allContributorsHaveCustomAmounts = true;
-
-            contributionRows.forEach(row => {
-                const customAmount = parseFloat(row.dataset.customAmount || 0);
-                customAmountTotal += customAmount;
-
-                if (!row.dataset.customAmount || customAmount === 0) {
-                    allContributorsHaveCustomAmounts = false;
-                }
-            });
-
-            if (allContributorsHaveCustomAmounts && customAmountTotal < totalAmount) {
-                const warningIcon = expenseLine.querySelector(`#expense-warning-${expenseLineId}`);
-                const amountElement = expenseLine.querySelector(
-                    `#expense-amount-${expenseLineId} .amount`);
-                const warningMessage = expenseLine.querySelector(
-                    `#expense-warning-message-${expenseLineId}`);
-
-                if (warningIcon) {
-                    warningIcon.hidden = false;
-                }
-
-                if (amountElement) {
-                    amountElement.classList.add('amount-warning');
-                }
-
-                if (warningMessage) {
-                    warningMessage.hidden = false;
-                    warningMessage.innerHTML = `
-                        <i class="fa-solid fa-circle-info text-primary"></i>
-                        Custom amounts do not align with the total expense. Please review the assigned custom amounts.
-                    `;
-                }
-            }
         });
     });
 </script>
+
 {% endblock %}

@@ -66,6 +66,16 @@
         </div>
     </nav>
 
+    <!-- Django messages for record updates -->
+    <div class="container message-overlay z-3" id="message-container">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible show box-shadow" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+
     <!-- Main Content -->
     <main class="flex-grow-1">
         <div class="container-fluid py-4">

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your Assignment{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Secret Santa Assignment</h2>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
+        <p><strong>Assigned Recipient:</strong> {{ assigned_recipient.name }}</p>
+        {% if wishlist %}
+            <p><strong>Recipient's Wishlist:</strong></p>
+            <p>{{ wishlist }}</p>
+        {% else %}
+            <p>Your recipient has not provided a wishlist yet.</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

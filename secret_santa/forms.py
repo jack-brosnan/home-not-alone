@@ -32,19 +32,12 @@ class EventForm(forms.ModelForm):
 
 class ParticipantForm(forms.ModelForm):
     """
-    Form for adding or editing a contributor.
+    Form for adding or editing a participant.
     """
     class Meta:
-        """
-        **Model**: :model:`Contributor`
-
-        **Fields**:
-
-        1. ``name``: TextInput for entering the item name.
-
-        """
         model = Participant
-        fields = ['name', ]
+        fields = ['name', 'email']  # Include the email field here
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Enter Name'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Enter Email'}),
         }
