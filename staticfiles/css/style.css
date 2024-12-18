@@ -71,6 +71,13 @@ body {
     color: #b71c1c;
 }
 
+.center-content {
+    text-align: center;
+}
+
+.white-link {
+    color: white;
+}
 
 /* Footer */
 .footer {
@@ -121,7 +128,7 @@ body {
 }
 
 .v-space {
-    line-height: 35px;    
+    line-height: 35px;
 }
 
 /* Custom button design for event list cards */
@@ -259,7 +266,7 @@ body {
 }
 
 .btn--gray {
-    background-color: initial;    
+    background-color: initial;
     background-image: linear-gradient(-180deg, #868f96, #596164);
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
