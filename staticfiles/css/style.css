@@ -73,6 +73,7 @@ body {
 
 .center-content {
     text-align: center;
+    list-style-position: inside;
 }
 
 .white-link {
