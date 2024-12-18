@@ -1,40 +1,42 @@
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-# from django.contrib.auth.models import User, Group
-# from invitations.signals import invite_accepted
-# from .models import Participant
-
-# @receiver(post_save, sender=User)
-# def add_user_to_organiser_group(sender, instance, created, **kwargs):
-#     if created and instance.is_active:
-#         # Any newly registered user is an organiser
-#         organiser_group, created_group = Group.objects.get_or_create(name='Organiser')
-#         instance.groups.add(organiser_group)
-
 from django.dispatch import receiver
+from django.contrib.auth.models import User, Group
+from allauth.account.signals import user_signed_up, user_logged_in
 from invitations.signals import invite_accepted
-from django.contrib.auth.models import Group
+from invitations.utils import get_invitation_model
 from .models import Participant
 
+Invitation = get_invitation_model()
+
+@receiver(user_signed_up)
+def set_organiser_role_on_signup(sender, request, user, **kwargs):
+    """
+    When a user registers without an invitation, 
+    they are assigned the role of 'organiser'.
+    """
+    organiser_group, _ = Group.objects.get_or_create(name='Organiser')
+    user.groups.add(organiser_group)
+
 @receiver(invite_accepted)
-def handle_invite_accepted(sender, email, request, invitation, **kwargs):
+def handle_invite_accepted(sender, email, invitation, request, **kwargs):
     """
-    Link the new User to the Participant record and assign them to the Participant group.
+    After user has signed up after clicking the invitation link,
+    they are assigned the role of 'participant'. The newly created 
+    user record is then to the matching participant record.
     """
-    print(f"Signal Triggered: email={email}, invitation={invitation}")  # Debugging
-
-    try:
-        # Find the participant linked to this email
-        participant = Participant.objects.get(email=email, user__isnull=True)
+    user = User.objects.filter(email__iexact=email).first()
+    if user:
         
-        # The `request.user` should be the user who just signed up and accepted the invite
-        participant.user = request.user
-        participant.save()
-
-        # Add the user to the Participant group
-        group, created = Group.objects.get_or_create(name="Participant")
-        request.user.groups.add(group)
-
-        print(f"User {request.user.username} linked to Participant {participant.name}")  # Debugging
-    except Participant.DoesNotExist:
-        print(f"No Participant found for email {email}")  # Debugging
+        try:
+            # Connect the invited user to their Participant profile if it exists
+            participant = Participant.objects.get(email__iexact=email, user__isnull=True)
+            participant.user = user
+            participant.save()
+        except Participant.DoesNotExist:
+            # If no Participant record exists for this email, we still treat them as a participant user
+            pass
+            
+        #Updates user role to 'participant
+        participant_group, _ = Group.objects.get_or_create(name='Participant')
+        user.groups.add(participant_group)
+        organiser_group, _ = Group.objects.get_or_create(name='Organiser')
+        user.groups.remove(organiser_group)

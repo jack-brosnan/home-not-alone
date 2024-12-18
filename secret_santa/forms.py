@@ -41,3 +41,14 @@ class ParticipantForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'placeholder': 'Enter Name'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Enter Email'}),
         }
+
+class ParticipantWishlistForm(forms.ModelForm):
+    """
+    Form for particapant to update wishlist.
+    """
+    class Meta:
+        model = Participant
+        fields = ['wishlist']
+        widgets = {
+            'wishlist': forms.Textarea(attrs={'placeholder': 'Enter your wishlist items...'})
+        }

@@ -1,110 +1,65 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
-
-{% block title %}View Event{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
+<section class="container mt-4">
+    <div class="row mb-3">
+        <h1 class="header-white text-center">Event: {{ event.title }}</h1>
+    </div>
 
-<section>
-    <h2 class="header-white visually-hidden">Event</h2>
-
-    <!-- Event overview section -->
-    <div class="container-fluid my-3 px-2 z-2">
-        <div class="row justify-content-between">
-            <div class="col-md-6 align-self-center container--white brand-light box-shadow rounded">
-                <div class="row">
-                    <!-- Event profile image -->
-                    <div class="col-12 col-md-5 align-self-center">
-                        {% if "placeholder" in event.event_image.url %}
-                        <img src="{% static 'images/placeholder.webp' %}" class="expense-img card-img-top"
-                            alt="placeholder image">
+    <!-- Display participants -->
+    <div class="row my-4">
+        <h2 class="header-white">Participants</h2>
+        <table class="table table-striped table-light mt-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Assigned Recipient</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in participant %}
+                <tr>
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.email }}</td>
+                    <td>
+                        {% if p.assigned_recipient %}
+                            {{ p.assigned_recipient.name }}
                         {% else %}
-                        <img src="{{ event.event_image.url }}" class="expense-img card-img-top"
-                            alt="{{ event.title }} event image">
+                            Not assigned
                         {% endif %}
-                    </div>
-                    <!-- Event title, description, and budget -->
-                    <div class="col-12 col-md-7 text-center align-self-center text--black">
-                        <h2>{{ event.title }}</h2>
-                        <p>{{ event.description }}</p>
-                        <p>Budget: {{ event.budget }} <span>{{ event.get_currency_display }}</span></p>
-                        <p><small>Created on: {{ event.created_at|date:"M d, Y" }}</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-5 align-self-center p-2 mt-2">
-                <!-- Participants Section -->
-                <div class="row justify-content-center contributor-container brand-dark rounded">
-                    <div class="col-12 mt-2 text-center">
-                        <h3 class="header-white">Participants<span>
-                                <a href="{% url 'edit_participant' event.id %}" class="btn btn--orange">Edit</a></span>
-                        </h3>
-                    </div>
+                    </td>
+                    <td>
+                        {% if is_organiser and p.email and not p.user %}
+                            <a href="{% url 'invite_participant' p.id %}" class="btn btn-sm btn-primary">Send Invitation to {{ p.name }}</a>
+                        {% else %}
+                            <span>{{ p.name }} has accepted</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No participants found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-                    {% for p in participant %}
-                    <div
-                        class="container--white text--black d-flex align-items-center justify-content-between p-2 mb-2">
-                        <div>{{ p.name }}</div>
-                        <div>
-                            {% if p.user %}
-                            <!-- Participant already has a user account -->
-                            <span class="badge bg-success">User Assigned</span>
-                            <!-- Optional password reset link (requires password reset setup) -->
-                            <a href="#" class="btn btn-sm btn-outline-secondary ms-2">Reset Password</a>
-                            {% else %}
-                            <button class="btn btn-primary btn-sm generate-link-btn"
-                                data-participant-id="{{ p.id }}">Generate Link
-                            </button>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% empty %}
-                    <!-- Displays message when no participants are added -->
-                    <div id="container-empty-container" class="p-2 m-3 container--white box-shadow rounded">
-                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit above
-                            to add participants.</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{% url 'edit_participant' event.id %}" class="btn btn-secondary">Edit Participants</a>
+        <a href="{% url 'random_santa' event.id %}" class="btn btn-success">Assign Random Santas</a>
     </div>
 </section>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".generate-link-btn");
-
-        buttons.forEach((button) => {
-            button.addEventListener("click", function () {
-                const participantId = this.getAttribute("data-participant-id");
-                const url = `/generate_invitation_link/${participantId}/`;
-
-                fetch(url, {
-                        method: "GET",
-                        headers: {
-                            "X-Requested-With": "XMLHttpRequest",
-                        },
-                    })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data.success) {
-                            const linkElement = document.getElementById(
-                                `link-${participantId}`);
-                            linkElement.innerHTML =
-                                `<a href="${data.link}" target="_blank">${data.link}</a>`;
-                        } else {
-                            alert(`Error: ${data.error}`);
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error generating link:", error);
-                        alert("Failed to generate the link. Please try again.");
-                    });
-            });
-        });
-    });
-</script>
-
+{% else %}
+<section class="container mt-4">
+    <div class="body-content" id="about">
+        <h2>Please login to view events.</h2>
+    </div>
+</section>
+{% endif %}
 {% endblock %}

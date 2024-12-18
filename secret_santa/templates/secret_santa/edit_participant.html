@@ -6,7 +6,6 @@
 <section class="mx-auto my-3 container-v-center">
     <h2 class="header-white">Participants</h2>
 
-    <!-- Table to display participants and available actions -->
     <div class="p-2 my-3 container--white box-shadow rounded">
         <table class="table">
             <caption class="visually-hidden">List of participants with edit and delete actions</caption>
@@ -20,7 +19,6 @@
             <tbody>
                 {% for p in participants %}
                 {% if form.instance.id == p.id %}
-                <!-- Include form from save_participant.html to save participant -->
                 {% include 'secret_santa/save_participant.html' %}
                 {% else %}
                 <tr>
@@ -69,7 +67,6 @@
         </table>
     </div>
 
-    <!-- Back to Event button -->
     <div class="d-flex justify-content-center">
         <a href="{% url 'view_event' event.id %}" class="btn btn--orange mx-auto">Back to Event</a>
     </div>
