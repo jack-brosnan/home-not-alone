@@ -1,0 +1,19 @@
+<div class="row justify-content-center contributor-container brand-dark rounded">
+    <div class="col-12 mt-2 text-center">
+        <h3 class="header-white">Santa assigned<span> </h3>
+    </div>
+    <div class="mt-4">
+        <form action="{% url 'random_santa' event.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" {% if event.participants.all|length == 0 or event.participants.all.0.assigned_recipient %}disabled{% endif %}>Assign Secret Santa</button>
+          </form>
+        {% if event.participants.all.0.assigned_recipient %}
+        <h4>Secret Santa Pairs:</h4>
+        <ul class="container--white text--black">
+            {% for participant in event.participants.all %}
+            <li>{{ participant.name }} is Santa for {{ participant.assigned_recipient.name }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
