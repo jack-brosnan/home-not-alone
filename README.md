@@ -208,27 +208,59 @@ List any known bugs here.
 
 #### Creating the Heroku App
 
-- Step-by-step instructions.
+- Begin by signing up OR logging in to [Heroku](https://www.heroku.com/).
+- In the Heroku Dashboard, click on 'New'.
+- Select 'Create New App'.
+- Next, choose a unique name for your project.
+- Select the appropriate region. For example: "EU region".
+- Click "Create App" to proceed.
+- In the "Deploy" tab, choose GitHub as the deployment method.
+- Connect your GitHub account and find/connect your GitHub repository to complete the link.
 
 #### Setting Up Environment Variables
 
-- Step-by-step instructions.
+- Create `env.py` in the top level of the Django app.
+- Import `os` in `env.py`.
+- Set up necessary environment variables in `env.py`. This includes the secret key and database URL.
+- Update `settings.py` to use environment variables for secret key and database correctly.
+- Configure environment variables in the Heroku "Settings" tab, under "Config Vars".
+- Migrate the models to the new database connection in the terminal.
+- Configure the static files and templates directories in your `settings.py`.
+- Add Heroku to the `ALLOWED_HOSTS` list.
 
 #### Creating Procfile and Pushing Changes
 
-- Step-by-step instructions.
+- Create a `Procfile` in the top level directory of your repository.
+- Next, add the command to run the project in the `Procfile`.
+- Add, commit, and push these changes to GitHub.
 
 #### Heroku Deployment
 
-- Step-by-step instructions.
+- In Heroku, navigate to the Deployment tab.
+- Click to deploy the branch manually.
+- You should then monitor the build logs for any errors that may occur.
+- Upon successful deployment, Heroku will display a link to the live site for your app.
+   - Make sure to resolve any deployment errors by adjusting the code as necessary!
 
 ### Forking the Repository
 
-- Step-by-step instructions.
+Forking the GitHub Repository will allow you to create your very own copy of the original repository without affecting the original. Follow these steps to do so:
+
+- Log in to GitHub OR create a GitHub account.
+- Visit the [repository link](https://github.com/jack-brosnan/home-not-alone).
+- Click on "Fork" at the top of the repository.
 
 ### Creating a Clone of the Repository
 
-- Step-by-step instructions.
+Creating a clone of a repository enables you to make a local copy of said repository. Follow these steps to proceed:
+
+- Navigate to the [Home not Alone repository](https://github.com/jack-brosnan/home-not-alone).
+- Click on the <>Code button.
+- Select the "HTTPS" option under the "Local" tab.
+- Copy the URL.
+- Open your IDE terminal and change the directory to your desired location.
+- Use `git clone` followed by the copied repository URL.
+- You now have your own copy of Home not Alone!
 
 ##### [ Back to Top ](#table-of-contents)
 
