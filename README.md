@@ -2,16 +2,16 @@
 
 # Welcome to Home Not Alone!
 
-## Home Not Alone
-### Home Not Alone is a Secret Santa planning app, dedicated to making Secret Santa super simple, while keeping everyone's secrets a surprise.
+## The Secret Santa Planning App
+### Home Not Alone is dedicated to making planning your next Secret Santa super simple, while keeping everyone's secret gifts a Santa-sized surprise!
 
-The responsive website allows registered users to [list key functionalities]. Users who are not registered are free to [list additional functionalities]. 
+The responsive website allows registered users to create participant lists for gift giving activities, allowing easy inviting and assignment distribution, along with setting a recommended budget for all gifts involved. Users who are not registered are recommended to check out the website's About page, and are free to sign up for their own account. 
 
 # [Link to Live Site](#)  
 
 This project is created as a final hackathon project for Code Institute's 16 week fullstack developer bootcamp.  
 
-Built by Jack, Bryan, Oleksii and Emma.
+Built by Team "Santa's Little Nerds": Jack, Bryan, Oleksii and Emma.
 
 ---
 
@@ -57,13 +57,38 @@ Include your wireframes here.
 
 # Agile Development
 
-Describe your agile development process and link to your Kanban board or project management tool.
+When collaborating on ideas for our group project, we created a dedicated Miro board. We ideated on our plans, broke it down into pieces to examine the purpose and target audience, and determined what key elements were needed for both the UX design and the Entity Relationship Diagram for Django.   
+- [Home-not-Alone Planning Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
+
+We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
+
 
 ### User Stories Overview
 
-List your user stories
-1. Title [User Story Title]
-   - As a [user type], I can [action] so that [goal].
+1. _User Story 1: Create and Manage Events_
+- As a organiser I can create a new Secret Santa event so that I can easily host a gifting exchange for my group.
+
+2. _User Story 2: Account Registration_
+- As an organiser, I can easily find the sign up page and create an account on the website that will let me host a gifting exchange for my group.
+- As a participant, I can easily accept the invite link and create an account to join my secret santa's group.
+
+3. _User Story 3: Event Details_
+- As an organiser, I can create a new group with appropriate settings that will allow me to invite the correct participants.
+- As a participant, I can see what gift giving group I am a member of and the relevant requirements for the group.
+
+4. _User Story 4: Participant Profile_
+- As an organiser, I can clearly see the names of all participants and who they have been assigned as their gift recipient.
+- As a participant, I can clearly see the name of my drawn gift recipient.
+- As a participant, I can add, modify and delete a wish list that will be shown to my gift giver.
+
+5. _User Story 5: Secret Santa site theming_
+- As a site administrator, I want to have strong colour palette and appearance choices for my website's appearance - so that it fits both the holiday season and the site's theme.
+
+6. _User Story 6: Landing Page_
+- As a site user, I want a landing page that introduces me to the secret santa website.
+
+7. _User Story 7: About Page_
+- As a site user, I want a landing page that introduces me to the secret santa website.
 
 ##### [ Back to Top ](#table-of-contents)
 

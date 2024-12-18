@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
+
+{% block content %}
+<div class="center-content">
+  <h1>{% trans "Sign Out" %}</h1>
+
+  <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <audio id="a" src="https://bestringtoness.com/sounds/mp3/we-wish-you-a-merry-christmas-ringtone.mp3" autoplay="false"></audio>
+<button type="submit" onclick="play()">{% trans 'Sign Out' %}</button>
+</div>
+{% endblock content %}
