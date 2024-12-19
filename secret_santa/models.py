@@ -7,9 +7,9 @@ CURRENCY = ((0, "€"), (1, "£"), (2, "$"))
 
 class Event(models.Model):
     """
-    Represents an event related to a user, storing data
-    like title, description, and an optional fields such as budget, date and image.
-    """    
+    Stores information about the event
+    """
+   
     organiser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200, null=True, blank=True)
@@ -25,9 +25,13 @@ class Event(models.Model):
 
 
 class Participant(models.Model):
+    """
+    Represents an individual participating in a Secret Santa event.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='participant_profile', null=True, blank=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='participants')
     name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254, unique=False, null=True, blank=True)
     wishlist = models.TextField(blank=True, null=True)
     assigned_recipient = models.ForeignKey(
         'self', 
