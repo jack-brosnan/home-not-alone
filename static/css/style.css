@@ -34,7 +34,7 @@ h1, h2, h3 {
 .navbar-brand {
     color: #fff !important;
     font-weight: bold;
-    font-family: cursive;
+    font-family: "Berkshire Swash", cursive, sans-serif;
 }
 
 .nav-link {
