@@ -16,10 +16,25 @@
             <img src="{{ event.event_image.url }}" class="event-image" alt="{{ event.title }}">
             {% endif %}
         </div>
-        <div class="col-12">
-            <h3 class="header-white text-center">{{ event.description }}</h3>
-            <h3 class="header-white text-center">{{ event.event_date|date:"M d, Y" }}</h3>   
-            <h3 class="header-white text-center">{{ event.get_currency_display }}{{ event.budget }}</h3>
+        <div class="col-12 text-center">
+            {% if event.description %}
+            <div class="row">
+                <div class="col-12"><p class="view-card-label">{{event_form.description.label}}:</p></div>
+                <div class="col-12"><p class="view-card-value">{{ event.description }}</p></div>
+            </div>
+            {% endif %}
+            {% if event.event_date %} 
+            <div class="row">
+                <div class="col-12"><p class="view-card-label">{{event_form.event_date.label}}:</p></div>
+                <div class="col-12"><p class="view-card-value">{{ event.event_date|date:"d M Y" }}</p></div>
+            </div>
+            {% endif %}
+            {% if event.budget %}  
+            <div class="row">
+                <div class="col-12"><p class="view-card-label">{{event_form.budget.label}}:</p></div>
+                <div class="col-12"><p class="view-card-value">{{ event.budget }} {{ event.get_currency_display }}</p></div>
+            </div>
+            {% endif %}
         </div>
         
         
