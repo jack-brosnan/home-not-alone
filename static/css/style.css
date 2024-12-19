@@ -1,10 +1,14 @@
 /* General Body Styling */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Monserrat", sans-serif;
     background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     /* Christmas green */
     color: white;
+}
+
+h1, h2, h3 {
+    font-family: "Berkshire Swash", sans-serif;
 }
 
 /* Navbar */
@@ -30,7 +34,7 @@ body {
 .navbar-brand {
     color: #fff !important;
     font-weight: bold;
-    font-family: cursive;
+    font-family: "Berkshire Swash", cursive, sans-serif;
 }
 
 .nav-link {
