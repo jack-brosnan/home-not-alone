@@ -240,7 +240,7 @@ def invite_participant(request, participant_id):
             invitation.send_invitation(request)
             messages.success(request, f"Invitation link sent to {participant.email}!")
         except Exception as e:
-            messages.error(request, f"Failed to send invitation: {e}")
+            messages.error(request, f"Failed to send invitation to {participant.email}. An email has already been sent")
     else:
         messages.error(request, "Participant has no email specified.")
 
