@@ -34,7 +34,12 @@ Built by Team "Santa's Little Nerds": Jack, Bryan, Oleksii and Emma.
 
 ## Database Planning
 
-Describe your database planning process and include diagrams if available.
+Going into the planning stages, we knew that we would need three main models to plan out:
+   - The User
+   - The Event
+   - The Participant
+
+
 
 ![Database Entity Relationship Diagram](/Docs/ERD.png)
 
@@ -44,7 +49,11 @@ Describe your database planning process and include diagrams if available.
 
 
 ### Site User
-This is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future. 
+This is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future.
+
+There are two primary views on the site: 
+1. **The Organiser**, who sets up the groups and issues invites to participants, and 
+2. **The Participant**, who can see the name of their assigned gift recipient, the recipient's wish list, and the option to set up a wishlist of their own.
 
 ### Goal
 This site's goal is to enable people to organise gift giving activities easily between large groups of people, particularly those who may be long distances away. 
@@ -64,6 +73,8 @@ We made four wireframes to cover the layouts for 4 main pages: the front page, t
 
 When collaborating on ideas for our group project, we created a dedicated Miro board. We ideated on our plans, broke it down into pieces to examine the purpose and target audience, and determined what key elements were needed for both the UX design and the Entity Relationship Diagram for Django.   
 - [Home-not-Alone Miro Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
+
+![Miroboard Image](Docs/homenotalone1.png)
 
 We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: 
 - [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
