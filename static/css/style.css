@@ -51,8 +51,8 @@ h1, h2, h3 {
 
 /* Message Container */
 .message-overlay .alert {
-    background-color: #b71c1c;
-    color: #ffcc80;
+    background-color: #FFFFFF;
+    color: #b71c1c;
     border-color: #ffcc80;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -131,6 +131,10 @@ h1, h2, h3 {
 .footer a:hover {
     color: #ffcc80;
     text-decoration: underline;
+}
+
+#Nerds {
+    font-family: "Berkshire Swash", sans-serif;
 }
 
 /* CSS added by Jack and Oleksii */
@@ -362,7 +366,7 @@ h1, h2, h3 {
     text-decoration-line: none;
 }
 
-.view-card-label {
+div .view-card-label {
     font-size: x-large;
     color: #b71c1c;
     font-weight: 700;
@@ -370,7 +374,7 @@ h1, h2, h3 {
     font-family: cursive;
 }
 
-.view-card-value {
+div .view-card-value {
     font-size: large;
 }
 
