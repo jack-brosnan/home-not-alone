@@ -313,7 +313,6 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 ## Images
 
 - [Fancaps.net](https://www.fancaps.net) - Home Alone screenshots used for placeholder and site images.
-- Source 2
 
 ## Code
 
