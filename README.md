@@ -275,7 +275,7 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 
 ## Images
 
-- Source 1
+- [Fancaps.net](https://www.fancaps.net) - the Home Alone screenshots.
 - Source 2
 
 ## Code
