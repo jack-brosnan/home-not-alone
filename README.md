@@ -37,11 +37,9 @@ Built by Team "Santa's Little Nerds": Jack, Bryan, Oleksii and Emma.
 Going into the planning stages, we knew that we would need three main models to plan out:
    - The User
    - The Event
-   - The Participant
+   - The Participant 
 
-
-
-![Database Entity Relationship Diagram](/Docs/ERD.png)
+![Database Entity Relationship Diagram](/docs/ERD.png)
 
 ## UX Design
 
@@ -49,7 +47,7 @@ Going into the planning stages, we knew that we would need three main models to 
 
 
 ### Site User
-This is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future.
+Inspired by a classic Christmas movie from our childhoods, Home Not Alone is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future.
 
 There are two primary views on the site: 
 1. **The Organiser**, who sets up the groups and issues invites to participants, and 
@@ -62,10 +60,10 @@ This site's goal is to enable people to organise gift giving activities easily b
 
 We made four wireframes to cover the layouts for 4 main pages: the front page, the sign in page, the sign up page, and the landing page when logged in.
 
-![Main Landing Page Wireframe](/Docs/wireframe%201.png)
-![Sign In Wireframe](/Docs/wireframe%203.png)
-![Sign Up Wireframe](/Docs/wireframe%202.png)
-![Logged In Landing Page Wireframe](/Docs/wireframe%204.png)
+![Main Landing Page Wireframe](/docs/wireframe%201.png)
+![Sign In Wireframe](/docs/wireframe%203.png)
+![Sign Up Wireframe](/docs/wireframe%202.png)
+![Logged In Landing Page Wireframe](/docs/wireframe%204.png)
 
 ##### [ Back to Top ](#table-of-contents)
 
@@ -74,7 +72,7 @@ We made four wireframes to cover the layouts for 4 main pages: the front page, t
 When collaborating on ideas for our group project, we created a dedicated Miro board. We ideated on our plans, broke it down into pieces to examine the purpose and target audience, and determined what key elements were needed for both the UX design and the Entity Relationship Diagram for Django.   
 - [Home-not-Alone Miro Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
 
-![Miroboard Image](Docs/homenotalone1.png)
+![Miroboard Image](docs/homenotalone1.png)
 
 We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: 
 - [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
@@ -155,11 +153,33 @@ List and describe the features you plan to implement in the future.
 
 # Technology Stack
 
-List the technologies used in your project.
+- Frontend Languages: HTML5, CSS3, JavaScript, Bootstrap
+- Backend Languages: Django (Python)
+- Project Planning: Miroboard, Github Projects, Balsamiq
 
-- Technology 1
-- Technology 2
-- Technology 3
+*Django Packages:*
+
+   - Gunicorn: WSGI server for deployment.
+   - Dj_database_url: Database URL parsing.
+   - Psycopg2: PostgreSQL adapter for Python.
+   - Allauth: Authentication and account management.
+   - Django Invitations: Allauth extension handling email invites.
+
+*Frameworks, Libraries, and Programs Used:*
+
+   - Django: Python web framework used for backend development.
+   - Bootstrap: Front-end framework for responsive design.
+   - JavaScript: Used for dynamic and interactive components.
+   - CSS: Used for styling HTML5.
+   - GIT: Used git for version control using the gitpod terminal.
+   - Github: The Project's code was stored in github.
+   - Heroku: Used to deploy the live project.
+   - PEP8: Python code was validated using PEP8.
+   - W3C HTML: Validated HTML code using W3C'S HTML validator.
+   - W3C CSS: Validated CSS code using W3C'S CSS validator.
+   - Javascript Validator: Validated JavaScript code using site24x7.com's Javascript validator.
+   - Chrome Devtools: Used devtools on google chrome to test website responsiveness and to check for bugs.
+
 
 ##### [ Back to Top ](#table-of-contents)
 
@@ -293,7 +313,6 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 ## Images
 
 - [Fancaps.net](https://www.fancaps.net) - Home Alone screenshots used for placeholder and site images.
-- Source 2
 
 ## Code
 
@@ -304,5 +323,6 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 - The team, for having a great time together during the hackathon.
 - Our coding cohort, for keeping spirits merry and bright.
 - To our course coordinator and turtors at Code Institute for their support.
+- Home Alone, for being an awesome classic Christmas movie!
 
 ##### [ Back to Top ](#table-of-contents)
