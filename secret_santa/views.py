@@ -135,13 +135,15 @@ def view_event(request, event_id):
     of a specific event and added participants.    
     """
     event = get_object_or_404(Event, pk=event_id, organiser=request.user)
+    event_form = EventForm(instance=event)
     participants = Participant.objects.filter(event=event)
     is_organiser_flag = request.user.is_authenticated and request.user.groups.filter(name="Organiser").exists()
 
     return render(request, 'secret_santa/view_event.html', {
         "event": event,
         "participant": participants,
-        "is_organiser": is_organiser_flag
+        "is_organiser": is_organiser_flag,
+        "event_form": event_form,
     })
 
 @login_required

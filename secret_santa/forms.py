@@ -26,7 +26,7 @@ class EventForm(forms.ModelForm):
         labels = {
             'title': 'Event Title',
             'description': 'Event Description',
-            'event_date': 'Event Date*',
+            'event_date': 'Event Date',
             'event_image': 'Event Image',
             'currency': 'Select Currency',
             'budget': 'Recomended budget',
@@ -37,7 +37,7 @@ class EventForm(forms.ModelForm):
                 attrs={'placeholder': 'Enter Description'}
             ),
             'event_date': forms.DateInput(attrs={'type': 'date',}),
-            'budget': forms.NumberInput(attrs={'placeholder': 'Event budget',}),
+            'budget': forms.NumberInput(attrs={'placeholder': '0.00',}),
             
         }
 
