@@ -323,5 +323,6 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 - The team, for having a great time together during the hackathon.
 - Our coding cohort, for keeping spirits merry and bright.
 - To our course coordinator and turtors at Code Institute for their support.
+- Home Alone, for being an awesome classic Christmas movie!
 
 ##### [ Back to Top ](#table-of-contents)
