@@ -163,6 +163,7 @@ List and describe the features you plan to implement in the future.
    - Dj_database_url: Database URL parsing.
    - Psycopg2: PostgreSQL adapter for Python.
    - Allauth: Authentication and account management.
+   - Django Invitations: Allauth extension handling email invites.
 
 *Frameworks, Libraries, and Programs Used:*
 
