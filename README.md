@@ -41,7 +41,7 @@ Going into the planning stages, we knew that we would need three main models to 
 
 
 
-![Database Entity Relationship Diagram](/Docs/ERD.png)
+![Database Entity Relationship Diagram](/docs/ERD.png)
 
 ## UX Design
 
@@ -62,10 +62,10 @@ This site's goal is to enable people to organise gift giving activities easily b
 
 We made four wireframes to cover the layouts for 4 main pages: the front page, the sign in page, the sign up page, and the landing page when logged in.
 
-![Main Landing Page Wireframe](/Docs/wireframe%201.png)
-![Sign In Wireframe](/Docs/wireframe%203.png)
-![Sign Up Wireframe](/Docs/wireframe%202.png)
-![Logged In Landing Page Wireframe](/Docs/wireframe%204.png)
+![Main Landing Page Wireframe](/docs/wireframe%201.png)
+![Sign In Wireframe](/docs/wireframe%203.png)
+![Sign Up Wireframe](/docs/wireframe%202.png)
+![Logged In Landing Page Wireframe](/docs/wireframe%204.png)
 
 ##### [ Back to Top ](#table-of-contents)
 
