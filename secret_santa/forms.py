@@ -23,12 +23,22 @@ class EventForm(forms.ModelForm):
         """
         model = Event
         fields = ['title', 'description', 'event_date', 'event_image', 'currency', 'budget']
+        labels = {
+            'title': 'Event Title',
+            'description': 'Event Description',
+            'event_date': 'Event Date*',
+            'event_image': 'Event Image',
+            'currency': 'Select Currency',
+            'budget': 'Recomended budget',
+        }
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Enter Title'}),
             'description': forms.TextInput(
                 attrs={'placeholder': 'Enter Description'}
             ),
-            'event_date': forms.DateInput(attrs={'type': 'date'}),
+            'event_date': forms.DateInput(attrs={'type': 'date',}),
+            'budget': forms.NumberInput(attrs={'placeholder': 'Event budget',}),
+            
         }
 
 class ParticipantForm(forms.ModelForm):
