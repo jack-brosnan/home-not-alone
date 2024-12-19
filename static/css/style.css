@@ -411,3 +411,8 @@ body {
     color: red;
 }
 
+/* View event page */
+
+.event-image {
+    max-height: 300px;
+}
