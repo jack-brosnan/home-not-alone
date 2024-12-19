@@ -74,7 +74,7 @@ We made four wireframes to cover the layouts for 4 main pages: the front page, t
 When collaborating on ideas for our group project, we created a dedicated Miro board. We ideated on our plans, broke it down into pieces to examine the purpose and target audience, and determined what key elements were needed for both the UX design and the Entity Relationship Diagram for Django.   
 - [Home-not-Alone Miro Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
 
-![Miroboard Image](Docs/homenotalone1.png)
+![Miroboard Image](docs/homenotalone1.png)
 
 We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: 
 - [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
