@@ -11,6 +11,20 @@ body {
 .navbar {
     background-color: #b71c1c;
     /* Christmas red */
+    position: relative;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px; /* Adjust as needed */
+    height: 10px; /* Height of the snow border */
+    background: linear-gradient(to right, #fff 20%, transparent 20%, transparent 80%, #fff 80%);
+    background-size: 20px 100%; /* Adjust for snowflake size */
+    background-color: red;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Soft glow effect */
 }
 
 .navbar-brand {
@@ -84,6 +98,20 @@ body {
 .footer {
     background-color: #b71c1c;
     color: white;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    height: 10px; /* Height of the snow border */
+    background: linear-gradient(to right, #fff 20%, transparent 20%, transparent 80%, #fff 80%);
+    background-size: 20px 100%; /* Adjust for snowflake size */
+    background-color: red;
+    z-index: 1; /* Ensure it appears above the footer */
 }
 
 .footer a {
@@ -358,13 +386,12 @@ body {
     background: none;
     border: none;
     color: green;
-    background-color: #b71c1c;
 }
 
 .edit-icon {
     background: none;
     border: none;
-    color: blue;
+    color: #2e7d32;
 }
 
 .save-icon {
