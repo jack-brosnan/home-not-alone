@@ -366,7 +366,7 @@ h1, h2, h3 {
     text-decoration-line: none;
 }
 
-.view-card-label {
+div .view-card-label {
     font-size: x-large;
     color: #b71c1c;
     font-weight: 700;
@@ -374,7 +374,7 @@ h1, h2, h3 {
     font-family: cursive;
 }
 
-.view-card-value {
+div .view-card-value {
     font-size: large;
 }
 
