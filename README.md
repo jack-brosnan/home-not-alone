@@ -305,5 +305,4 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 - Our coding cohort, for keeping spirits merry and bright.
 - To our course coordinator and turtors at Code Institute for their support.
 
-
 ##### [ Back to Top ](#table-of-contents)
