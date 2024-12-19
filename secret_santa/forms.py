@@ -18,16 +18,27 @@ class EventForm(forms.ModelForm):
         2. ``description``: TextInput for entering a description.
         3. ``event_image``: File input for uploading an image.
         4. ``currency``: Dropdown field to select the currency.
-        5. ``bydget``: Decimal to select event budget.
+        5. ``budget``: Decimal to select event budget.
 
         """
         model = Event
-        fields = ['title', 'description', 'event_image', 'currency', 'budget']
+        fields = ['title', 'description', 'event_date', 'event_image', 'currency', 'budget']
+        labels = {
+            'title': 'Event Title',
+            'description': 'Event Description',
+            'event_date': 'Event Date*',
+            'event_image': 'Event Image',
+            'currency': 'Select Currency',
+            'budget': 'Recomended budget',
+        }
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Enter Title'}),
             'description': forms.TextInput(
                 attrs={'placeholder': 'Enter Description'}
             ),
+            'event_date': forms.DateInput(attrs={'type': 'date',}),
+            'budget': forms.NumberInput(attrs={'placeholder': 'Event budget',}),
+            
         }
 
 class ParticipantForm(forms.ModelForm):
