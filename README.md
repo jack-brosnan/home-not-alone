@@ -37,9 +37,9 @@ Built by Team "Santa's Little Nerds": Jack, Bryan, Oleksii and Emma.
 Going into the planning stages, we knew that we would need three main models to plan out:
    - The User
    - The Event
-   - The Participant
+   - The Participant 
 
-![Database Entity Relationship Diagram](/Docs/ERD.png)
+![Database Entity Relationship Diagram](/docs/ERD.png)
 
 - **Relationships:**
   - **Many-to-One with Event:**  
@@ -74,7 +74,7 @@ Going into the planning stages, we knew that we would need three main models to 
 
 
 ### Site User
-This is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future.
+Inspired by a classic Christmas movie from our childhoods, Home Not Alone is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future.
 
 There are two primary views on the site: 
 1. **The Organiser**, who sets up the groups and issues invites to participants, and 
@@ -87,10 +87,10 @@ This site's goal is to enable people to organise gift giving activities easily b
 
 We made four wireframes to cover the layouts for 4 main pages: the front page, the sign in page, the sign up page, and the landing page when logged in.
 
-![Main Landing Page Wireframe](/Docs/wireframe%201.png)
-![Sign In Wireframe](/Docs/wireframe%203.png)
-![Sign Up Wireframe](/Docs/wireframe%202.png)
-![Logged In Landing Page Wireframe](/Docs/wireframe%204.png)
+![Main Landing Page Wireframe](/docs/wireframe%201.png)
+![Sign In Wireframe](/docs/wireframe%203.png)
+![Sign Up Wireframe](/docs/wireframe%202.png)
+![Logged In Landing Page Wireframe](/docs/wireframe%204.png)
 
 ##### [ Back to Top ](#table-of-contents)
 
@@ -99,7 +99,7 @@ We made four wireframes to cover the layouts for 4 main pages: the front page, t
 When collaborating on ideas for our group project, we created a dedicated Miro board. We ideated on our plans, broke it down into pieces to examine the purpose and target audience, and determined what key elements were needed for both the UX design and the Entity Relationship Diagram for Django.   
 - [Home-not-Alone Miro Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
 
-![Miroboard Image](Docs/homenotalone1.png)
+![Miroboard Image](docs/homenotalone1.png)
 
 We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: 
 - [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
@@ -207,58 +207,33 @@ Transitioning to **SendGrid**, a dedicated email service provider, will offer nu
 
 # Technology Stack
 
-## 🛠️ Technology Stack
+- Frontend Languages: HTML5, CSS3, JavaScript, Bootstrap
+- Backend Languages: Django (Python)
+- Project Planning: Miroboard, Github Projects, Balsamiq
 
-### **Frontend**
-- **HTML5 & CSS3:** Markup and styling languages used to structure and design the web pages.
-- **Bootstrap 5:** A responsive CSS framework that ensures the application is mobile-friendly and provides a consistent design across different devices.
-- **JavaScript:** Enhances interactivity and dynamic content on the client side.
+*Django Packages:*
 
-### **Backend**
-- **Python 3.12:** The primary programming language used for developing the backend of the application.
-- **Django 4.2.17:** A high-level Python web framework that encourages rapid development and clean, pragmatic design.
-- **Django Allauth:** Provides a comprehensive authentication system, including user registration, login, and social account integration.
-- **Django Invitations:** Facilitates the invitation flow, allowing Organisers to invite Participants via email.
+   - Gunicorn: WSGI server for deployment.
+   - Dj_database_url: Database URL parsing.
+   - Psycopg2: PostgreSQL adapter for Python.
+   - Allauth: Authentication and account management.
+   - Django Invitations: Allauth extension handling email invites.
 
-### **Database**
-- **PostgreSQL:** A powerful, open-source object-relational database system used for storing application data.
-- **dj-database-url:** Simplifies the configuration of the database by parsing the `DATABASE_URL` environment variable.
+*Frameworks, Libraries, and Programs Used:*
 
-### **Storage**
-- **Cloudinary:** A cloud-based service for managing and serving images and other media assets, integrated with Django via `cloudinary_storage`.
+   - Django: Python web framework used for backend development.
+   - Bootstrap: Front-end framework for responsive design.
+   - JavaScript: Used for dynamic and interactive components.
+   - CSS: Used for styling HTML5.
+   - GIT: Used git for version control using the gitpod terminal.
+   - Github: The Project's code was stored in github.
+   - Heroku: Used to deploy the live project.
+   - PEP8: Python code was validated using PEP8.
+   - W3C HTML: Validated HTML code using W3C'S HTML validator.
+   - W3C CSS: Validated CSS code using W3C'S CSS validator.
+   - Javascript Validator: Validated JavaScript code using site24x7.com's Javascript validator.
+   - Chrome Devtools: Used devtools on google chrome to test website responsiveness and to check for bugs.
 
-### **Forms & User Interface**
-- **Crispy Forms:** Enhances Django forms by rendering them in a visually appealing and customizable manner using Bootstrap 5.
-- **django-summernote:** Integrates the Summernote WYSIWYG editor into Django forms, allowing rich text editing capabilities.
-
-### **Email**
-- **Gmail SMTP:** Utilized for sending emails from the application, such as invitations and notifications.
-- **Django SMTP Backend:** Configured to handle email sending through Gmail's SMTP server, ensuring reliable email delivery.
-
-### **Deployment**
-- **Heroku:** A cloud platform used for deploying, managing, and scaling the Django application.
-- **WhiteNoise:** Simplifies the serving of static files in a production environment, enabling efficient and secure static asset management.
-
-### **Environment Management**
-- **python-dotenv:** Loads environment variables from a `.env` file into the application's environment, keeping sensitive information secure.
-- **os Module:** Used to access environment variables within Django’s `settings.py`.
-
-### **Version Control**
-- **Git:** A distributed version control system used to track changes in the application's source code.
-- **GitHub/GitLab/Bitbucket:** Platforms for hosting the Git repository, facilitating collaboration and version management.
-
-### **Additional Libraries & Tools**
-- **django.contrib.sites:** Manages multiple sites with a single Django installation, essential for handling site-specific settings.
-- **Whitenoise Middleware:** Serves static files efficiently in a production environment without relying on an external server.
-- **Decimal Module:** Provides support for fast correctly-rounded decimal floating point arithmetic, used in handling currency values.
-- **Cloudinary Storage:** Integrates Cloudinary with Django’s storage backend, enabling seamless media management.
-
-### **Security & Best Practices**
-- **Environment Variables:** Sensitive information like secret keys and email credentials are stored securely using environment variables, preventing exposure in the codebase.
-- **Middleware:** Implements security-focused middleware such as `SecurityMiddleware` and `CsrfViewMiddleware` to protect against common web vulnerabilities.
-- **Password Validation:** Enforces strong password policies to enhance user account security.
-
----
 
 ##### [ Back to Top ](#table-of-contents)
 
@@ -392,7 +367,6 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 ## Images
 
 - [Fancaps.net](https://www.fancaps.net) - Home Alone screenshots used for placeholder and site images.
-- Source 2
 
 ## Code
 
@@ -403,5 +377,6 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 - The team, for having a great time together during the hackathon.
 - Our coding cohort, for keeping spirits merry and bright.
 - To our course coordinator and turtors at Code Institute for their support.
+- Home Alone, for being an awesome classic Christmas movie!
 
 ##### [ Back to Top ](#table-of-contents)
