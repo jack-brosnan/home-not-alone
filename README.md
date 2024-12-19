@@ -275,12 +275,14 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 
 ## Images
 
-- [Fancaps.net](https://www.fancaps.net) - the Home Alone screenshots.
+- [Fancaps.net](https://www.fancaps.net) - Home Alone screenshots used for placeholder and site images.
 - Source 2
 
 ## Code
 
-- Source 1
-- Source 2
+- [Django Invitations](https://django-invitations.readthedocs.io/en/latest/)
+- [StackOverflow](https://stackoverflow.com/questions/67361758/how-do-i-effectively-add-sound-to-a-button-in-html-or-css) - Adding sound effects for button press.
+
+## Credit
 
 ##### [ Back to Top ](#table-of-contents)
