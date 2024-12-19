@@ -41,6 +41,33 @@ Going into the planning stages, we knew that we would need three main models to 
 
 ![Database Entity Relationship Diagram](/docs/ERD.png)
 
+- **Relationships:**
+  - **Many-to-One with Event:**  
+    Each `Participant` is linked to one `Event`, but an `Event` can have multiple `Participants`.
+  
+  - **One-to-One with User:**  
+    Each `Participant` can be associated with one `User` account, allowing for personalized interactions and access.
+  
+  - **Self-Referential Many-to-One with Participant:**  
+    Establishes the Secret Santa pairing by linking each `Participant` to another `Participant` as their recipient.
+
+### **Key Points**
+
+- **Role Management:**
+  - Users are assigned to groups (`Organiser` or `Participant`) which determine their permissions and accessible features within the application.
+  
+- **Invitation Flow:**
+  - **Organisers** can invite participants via email. Invited participants receive an invitation link to register and join the event.
+  - Upon accepting an invitation, a participant's `user` field is populated, and they are assigned to the `Participant` group.
+  
+- **Secret Santa Assignments:**
+  - Organisers can trigger the `random_santa` function, which shuffles participants and assigns each one a unique recipient.
+  - The `assigned_recipient` field ensures that each participant knows who they are gifting to, maintaining the secrecy of the process.
+  
+- **Data Integrity:**
+  - The use of foreign keys and one-to-one relationships ensures referential integrity within the database.
+  - Deleting an `Event` cascades to remove all associated `Participants`, maintaining a clean database state.
+
 ## UX Design
 
 ### Overview
@@ -109,45 +136,72 @@ We also set up a kanban board for tracking our project's user stories on GitHub'
 
 # Features Implemented
 
-List and describe the features implemented in your project.
+## 📄 Pages and Features
 
-## Home Page
-- Feature 1
-- Feature 2
+### **Home Page**
+The central hub of the application dynamically displays content based on the user's role. Organisers can view and manage their events, while Participants access their portal to see event details, assigned recipients, and update their wishlists. Unauthenticated users are prompted to log in or register to gain access.
 
-## About Page
-- Feature 1
-- Feature 2
+### **Add Event Page**
+Allows Organisers to create new Secret Santa events by providing essential details such as title, description, budget, date, and an optional image. The form includes validation to ensure all required fields are correctly filled, and upon successful creation, Organisers receive a confirmation message.
 
-## Profile Page
-- Feature 1
-- Feature 2
+### **Edit Event Page**
+Enables Organisers to modify existing event details. Organisers can update information like the event's title, description, budget, date, and image. The page provides feedback on successful updates or errors if any issues arise during the editing process.
 
-## Login Page
-- Feature 1
-- Feature 2
+### **Delete Event**
+Provides Organisers with the ability to remove events they have created. Upon confirmation, the event and all associated participants are permanently deleted from the database, and Organisers receive a success notification.
 
-## Registration Page
-- Feature 1
-- Feature 2
+### **View Event Page**
+Offers Organisers a detailed view of a specific event, including all participants involved. From this page, Organisers can manage participants, send invitations, and initiate the random assignment of Secret Santas. It serves as a comprehensive overview of the event's current state.
 
-## Logout Page
-- Feature 1
-- Feature 2
+### **Edit Participant Page**
+Allows Organisers to manage participants within an event. They can add new participants by entering their name and email, edit existing participant details, or remove participants as needed. The page ensures that all participant information is accurately maintained.
 
-### Responsive Design
-- Feature 1
-- Feature 2
+### **Random Santa Assignment**
+Enables Organisers to randomly assign each participant a recipient for Secret Santa gifting. The feature ensures that each participant is paired with a unique recipient, preventing self-assignment. Once assignments are made, Organisers receive a confirmation message.
 
-## Additional Security Features
-- Feature 1
-- Feature 2
+### **Invite Participant**
+Facilitates Organisers in sending invitation emails to participants who have not yet registered. By entering a participant's email, Organisers can send a personalized invitation link, enabling them to join the event and participate in the Secret Santa exchange.
+
+### **Participant Portal (Integrated into Home Page)**
+Serves as the dedicated space for Participants to interact with their Secret Santa event. Participants can view event details, see their assigned recipient and the recipient's wishlist, and update their own wishlist items. The portal provides real-time feedback upon successfully updating the wishlist.
+
+### **User Authentication Pages**
+Handled by `django-allauth`, these pages manage user registration, login, logout, and password management. New users can register or accept invitations, existing users can securely log in, and all users can reset their passwords via email if needed.
+
+### **Admin Dashboard**
+Utilizes Django's built-in admin interface to provide superusers and staff members with comprehensive management capabilities. Administrators can manage users, events, and participants, ensuring full oversight and control over the application's data and functionalities.
+
+---
+
+## 🛠️ Additional Features
+
+### **Role-Based Access Control**
+Implements distinct permissions for Organisers and Participants. Organisers have the authority to create and manage events and participants, while Participants can view event details, their assigned recipients, and manage their own wishlists.
+
+### **Email Integration**
+Configured to send emails using Gmail's SMTP server, allowing Organisers to send invitations and Participants to receive notifications. Email credentials are securely managed through environment variables, ensuring sensitive information remains protected.
+
+### **Frontend Enhancements**
+Incorporates responsive design principles to ensure usability across various devices. Utilizes Crispy Forms with Bootstrap 5 for enhanced form rendering and Cloudinary for efficient image storage and delivery.
+
+### **Security Measures**
+Ensures the application follows best security practices by storing sensitive information in environment variables, enforcing strong password policies, and implementing access controls through middleware and decorators.
+
+---
 
 ##### [ Back to Top ](#table-of-contents)
 
 # Future Features
 
-List and describe the features you plan to implement in the future.
+### **1. Switch to SendGrid for Email Sending**
+
+**Current Implementation:**
+
+Currently, the application utilizes Gmail's SMTP server to send essential emails such as invitations and notifications. While Gmail SMTP is effective for development and small-scale deployments, it presents limitations in scalability, deliverability, and advanced email management features.
+
+**Planned Enhancement:**
+
+Transitioning to **SendGrid**, a dedicated email service provider, will offer numerous advantages that enhance the application's email capabilities and overall user experience.
 
 ##### [ Back to Top ](#table-of-contents)
 
