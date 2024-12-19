@@ -47,8 +47,8 @@ body {
 
 /* Message Container */
 .message-overlay .alert {
-    background-color: #b71c1c;
-    color: #ffcc80;
+    background-color: #FFFFFF;
+    color: #b71c1c;
     border-color: #ffcc80;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
