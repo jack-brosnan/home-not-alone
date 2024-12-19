@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #2e7d32;
+    background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     /* Christmas green */
     color: white;
 }
@@ -11,12 +11,26 @@ body {
 .navbar {
     background-color: #b71c1c;
     /* Christmas red */
+    position: relative;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px; /* Adjust as needed */
+    height: 10px; /* Height of the snow border */
+    background: linear-gradient(to right, #fff 20%, transparent 20%, transparent 80%, #fff 80%);
+    background-size: 20px 100%; /* Adjust for snowflake size */
+    background-color: red;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Soft glow effect */
 }
 
 .navbar-brand {
     color: #fff !important;
     font-weight: bold;
-    font-family: christmas-classica;
+    font-family: cursive;
 }
 
 .nav-link {
@@ -41,7 +55,7 @@ body {
 
 /* Content Section */
 .dashboard-view {
-    background-color: #2e7d32;
+    background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     min-height: 100vh;
     padding: 20px;
 }
@@ -49,7 +63,7 @@ body {
 .body-content {
     flex: 1;
     /* Takes remaining space */
-    background-color: #2e7d32;
+    background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     text-align: center;
     padding: 40px 20px;
     overflow-y: auto;
@@ -89,6 +103,20 @@ body {
 .footer {
     background-color: #b71c1c;
     color: white;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    height: 10px; /* Height of the snow border */
+    background: linear-gradient(to right, #fff 20%, transparent 20%, transparent 80%, #fff 80%);
+    background-size: 20px 100%; /* Adjust for snowflake size */
+    background-color: red;
+    z-index: 1; /* Ensure it appears above the footer */
 }
 
 .footer a {
@@ -383,3 +411,8 @@ body {
     color: red;
 }
 
+/* View event page */
+
+.event-image {
+    max-height: 300px;
+}
