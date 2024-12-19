@@ -35,60 +35,66 @@ Built by Team "Santa's Little Nerds": Jack, Bryan, Oleksii and Emma.
 ## Database Planning
 
 Describe your database planning process and include diagrams if available.
-![Database Entity Relationship Diagram](pathtoyourdiagram.png)
+
+![Database Entity Relationship Diagram](/Docs/ERD.png)
 
 ## UX Design
 
 ### Overview
-Provide a brief overview of the UX design and user experience goals.
+
 
 ### Site User
-Describe the primary users of your site.
+This is aimed at long distance friends and family groups, large parties, and work groups. While themed for Christmas, it is possible to reskin the project to fit other holidays in future. 
 
 ### Goal
-Explain the main goal of your site.
+This site's goal is to enable people to organise gift giving activities easily between large groups of people, particularly those who may be long distances away. 
 
 ## Wireframes
 
-Include your wireframes here.
-![Wireframe Example](pathtoyourwireframe.png)
+We made four wireframes to cover the layouts for 4 main pages: the front page, the sign in page, the sign up page, and the landing page when logged in.
+
+![Main Landing Page Wireframe](/Docs/wireframe%201.png)
+![Sign In Wireframe](/Docs/wireframe%203.png)
+![Sign Up Wireframe](/Docs/wireframe%202.png)
+![Logged In Landing Page Wireframe](/Docs/wireframe%204.png)
 
 ##### [ Back to Top ](#table-of-contents)
 
 # Agile Development
 
 When collaborating on ideas for our group project, we created a dedicated Miro board. We ideated on our plans, broke it down into pieces to examine the purpose and target audience, and determined what key elements were needed for both the UX design and the Entity Relationship Diagram for Django.   
-- [Home-not-Alone Planning Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
+- [Home-not-Alone Miro Board](https://miro.com/app/board/uXjVL2ywJpk=/?share_link_id=472010981286)
 
-We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
+We also set up a kanban board for tracking our project's user stories on GitHub's Projects site. Our project board can be found here: 
+- [Home-not-Alone Project Board](https://github.com/users/jack-brosnan/projects/9)
 
 
 ### User Stories Overview
 
 1. _User Story 1: Create and Manage Events_
-- As a organiser I can create a new Secret Santa event so that I can easily host a gifting exchange for my group.
+   - As a organiser I can create a new Secret Santa event so that I can easily host a gifting exchange for my group.
 
 2. _User Story 2: Account Registration_
-- As an organiser, I can easily find the sign up page and create an account on the website that will let me host a gifting exchange for my group.
-- As a participant, I can easily accept the invite link and create an account to join my secret santa's group.
+   - As an organiser, I can easily find the sign up page and create an account on the website that will let me host a gifting exchange for my group.
+   - As a participant, I can easily accept the invite link and create an account to join my secret santa's group.
 
 3. _User Story 3: Event Details_
-- As an organiser, I can create a new group with appropriate settings that will allow me to invite the correct participants.
-- As a participant, I can see what gift giving group I am a member of and the relevant requirements for the group.
+   - As an organiser, I can create a new group with appropriate settings that will allow me to invite the correct participants.
+   - As a participant, I can see what gift giving group I am a member of and the relevant requirements for the group.
 
 4. _User Story 4: Participant Profile_
-- As an organiser, I can clearly see the names of all participants and who they have been assigned as their gift recipient.
-- As a participant, I can clearly see the name of my drawn gift recipient.
-- As a participant, I can add, modify and delete a wish list that will be shown to my gift giver.
+   - As an organiser, I can clearly see the names of all participants and who they have been assigned as their gift recipient.
+   - As a participant, I can clearly see the name of my drawn gift recipient.
+   - As a participant, I can add, modify and delete a wish list that will be shown to my gift giver.
 
 5. _User Story 5: Secret Santa site theming_
-- As a site administrator, I want to have strong colour palette and appearance choices for my website's appearance - so that it fits both the holiday season and the site's theme.
+   - As a site administrator, I want to have strong colour palette and appearance choices for my website's appearance - so that it fits both the holiday season and the site's theme.
 
 6. _User Story 6: Landing Page_
-- As a site user, I want a landing page that introduces me to the secret santa website.
+   - As a site user, I want a landing page that introduces me to the secret santa website.
 
 7. _User Story 7: About Page_
-- As a site user, I want a landing page that introduces me to the secret santa website.
+   - As a site user, I want a landing page that introduces me to the secret santa website.
 
 ##### [ Back to Top ](#table-of-contents)
 
@@ -284,5 +290,9 @@ Creating a clone of a repository enables you to make a local copy of said reposi
 - [StackOverflow](https://stackoverflow.com/questions/67361758/how-do-i-effectively-add-sound-to-a-button-in-html-or-css) - Adding sound effects for button press.
 
 ## Credit
+- The team, for having a great time together during the hackathon.
+- Our coding cohort, for keeping spirits merry and bright.
+- To our course coordinator and turtors at Code Institute for their support.
+
 
 ##### [ Back to Top ](#table-of-contents)
