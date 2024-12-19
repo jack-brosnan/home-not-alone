@@ -18,7 +18,7 @@ class EventForm(forms.ModelForm):
         2. ``description``: TextInput for entering a description.
         3. ``event_image``: File input for uploading an image.
         4. ``currency``: Dropdown field to select the currency.
-        5. ``bydget``: Decimal to select event budget.
+        5. ``budget``: Decimal to select event budget.
 
         """
         model = Event
