@@ -377,3 +377,9 @@ body {
     border: none;
     color: red;
 }
+
+/* View event page */
+
+.event-image {
+    max-height: 300px;
+}
