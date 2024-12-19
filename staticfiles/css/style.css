@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #2e7d32;
+    background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     /* Christmas green */
     color: white;
 }
@@ -16,7 +16,7 @@ body {
 .navbar-brand {
     color: #fff !important;
     font-weight: bold;
-    font-family: christmas-classica;
+    font-family: cursive;
 }
 
 .nav-link {
@@ -41,7 +41,7 @@ body {
 
 /* Content Section */
 .dashboard-view {
-    background-color: #2e7d32;
+    background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     min-height: 100vh;
     padding: 20px;
 }
@@ -49,7 +49,7 @@ body {
 .body-content {
     flex: 1;
     /* Takes remaining space */
-    background-color: #2e7d32;
+    background: linear-gradient(-180deg, #66bb6a, #2e7d32);
     text-align: center;
     padding: 40px 20px;
     overflow-y: auto;
@@ -358,6 +358,7 @@ body {
     background: none;
     border: none;
     color: green;
+    background-color: #b71c1c;
 }
 
 .edit-icon {
