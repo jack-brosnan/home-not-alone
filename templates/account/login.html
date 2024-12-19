@@ -6,44 +6,65 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
 
 {% block content %}
-<div class="center-content">
-  <h1>{% trans "Sign In" %}</h1>
 
-  {% get_providers as socialaccount_providers %}
+<div class="row">
+  <div class="col-12 col-md-6 align-content-center my-4">
+    <div class="center-content">
+      <p>Having trouble getting the family organised for a gift exchange?<br><br>Too many stockings and don't know which
+        friend is filling who's?</p>
 
-  {% if socialaccount_providers %}
-  <p>{% blocktrans with site.name as site_name %}Please sign in with one
-    of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+      <p>
+        <h2>Home Not Alone</h2>
+        <h3>is here to help!</h3>
+      </p>
 
-  <div class="socialaccount_ballot">
-
-    <ul class="socialaccount_providers">
-      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </ul>
-
-    <div class="login-or">{% trans 'or' %}</div>
-
+      <p>The only Secret Santa tool you need to make sure that big brother Buzz<br>knows he's the one buying a gift for
+        Aunt Betty!</p>
+    </div>
   </div>
+  <div class="col-12 col-md-6 align-self-center my-4">
 
-  {% include "socialaccount/snippets/login_extra.html" %}
+    <div class="center-content">
+      <h1>{% trans "Sign In" %}</h1>
 
-  {% else %}
-  <p>{% blocktrans %}If you have not created an account yet, then please
-    <a class="white-link" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-  </p>
-  {% endif %}
+      {% get_providers as socialaccount_providers %}
 
-  <form class="login" method="POST" action="{% url 'account_login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% if socialaccount_providers %}
+      <p>{% blocktrans with site.name as site_name %}Please sign in with one
+        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+      <div class="socialaccount_ballot">
+
+        <ul class="socialaccount_providers">
+          {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+
+        <div class="login-or">{% trans 'or' %}</div>
+
+      </div>
+    </div>
+
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% else %}
+    <p>{% blocktrans %}If you have not created an account yet, then please
+      <a class="white-link" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+    </p>
     {% endif %}
-    <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-    <br>
-    <br>
-    <a class="button secondaryAction white-link" href="{% url 'account_reset_password' %}">Forgot Password?</a>
-  </form>
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+      <br>
+      <br>
+      <a class="button secondaryAction white-link" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+    </form>
+  </div>
 </div>
 {% endblock content %}

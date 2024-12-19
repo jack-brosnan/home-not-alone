@@ -366,18 +366,6 @@ h1, h2, h3 {
     text-decoration-line: none;
 }
 
-div .view-card-label {
-    font-size: x-large;
-    color: #b71c1c;
-    font-weight: 700;
-    margin-top: 0.5em;
-    font-family: cursive;
-}
-
-div .view-card-value {
-    font-size: large;
-}
-
 /* Space card icon */
 .contributor-count {
     position: absolute;
