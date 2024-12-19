@@ -49,49 +49,6 @@
         </table>
     </div>
 
-                        <!-- Sum of total expense line amounts | adjusted for different screen sizes -->
-                        <!-- <p class="d-lg-none"><strong>Total:</strong> {{ event.get_currency_display }}
-                            {{ event.total_expense }}</p>
-                        <p class="d-none d-lg-inline"><strong>Total Expense:</strong>
-                            {{ event.get_currency_display }}
-                            {{ event.total_expense }}</p> -->
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-5 align-self-center p-2 mt-2">
-                <!-- Section displaying contributors assigned to the space including total amount contributing -->
-                <div class="row justify-content-center contributor-container brand-dark rounded">
-                    <div class="col-12 mt-2 text-center">
-                        <h3 class="header-white">Participants<span>
-                                <a href="{% url 'edit_participant' event.id %}" class="btn btn--orange">Edit</a></span>
-                        </h3>
-                    </div>
-
-                    <!-- Loops through contributors and creates filter applying custom checkbox style  -->
-                    {% for p in participant %}
-                    <div class="container--white text--black">
-                        <ul>
-                            <li>{{ p.name }}</li>
-                        </ul>
-                    </div>
-
-                    {% empty %}
-                    <!-- Displays message for when no contributors are added to space -->
-                    <div id="container-empty-container" class="p-2 m-3 container--white box-shadow rounded">
-                        <p class="text--black m-0"><i class="fa-solid fa-circle-info text-success"></i> Click Edit
-                            above
-                            to add
-                            participants to the space.</p>
-                    </div>
-
-                    {% endfor %}
-
-                </div>
-                <!-- Assign secret Santas -->
-                {% include 'secret_santa/assign_santa.html' %}
-            </div>
-        </div>
     <div class="d-flex justify-content-between align-items-center">
         <a href="{% url 'edit_participant' event.id %}" class="btn btn-secondary">Edit Participants</a>
         <a href="{% url 'random_santa' event.id %}" class="btn btn-success">Assign Random Santas</a>
