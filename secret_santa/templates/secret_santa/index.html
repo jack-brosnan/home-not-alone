@@ -10,7 +10,9 @@
 <section class="container mt-4">
     <h1 class="header-white text-center">{{ event.title }}</h1>
     <p class="text-center text-light">{{ event.description }}</p>
-
+    <div class="d-flex justify-content-center">
+        <img src="{% static 'images/placeholder.webp' %}" class="event-image" alt="placeholder image">
+    </div>
     <div class="row mt-4">
         <div class="col-12 col-md-6 mb-4">
             <h2 class="header-white">Your Assigned Recipient</h2>
